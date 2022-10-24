@@ -4,6 +4,7 @@ import userRoutes from './routes/users.js';
 import mongoose from 'mongoose';
 import cors from 'cors'
 import authRoutes from './routes/auth.js';
+import caseRoutes from './routes/case.js'
 import cookieParser from 'cookie-parser';
 
 
@@ -27,6 +28,7 @@ app.use(express.json());
 // })
 
 app.use(function(req, res, next) {
+  console.log(req.headers.origin);
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -37,6 +39,7 @@ app.use(function(req, res, next) {
 // routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/cases', caseRoutes);
 
 // error handling
 app.use((err, req, res, next) => {
